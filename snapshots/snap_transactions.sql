@@ -9,7 +9,6 @@ How it works:
 - Uses `strategy='timestamp'` to capture changes based on date_time.
 - Stores historical snapshots whenever stat` or chargeback status changes.
 */
-
 {{ 
     config(
         target_schema='snapshots',
