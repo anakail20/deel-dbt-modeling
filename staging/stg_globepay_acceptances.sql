@@ -1,3 +1,5 @@
+{{ config(materialized='view') }}
+
 WITH raw_acceptance AS (
    SELECT
         external_ref,
