@@ -1,3 +1,5 @@
+{{ config(materialized='table') }}
+    
 WITH transactions AS (
     SELECT * FROM {{ ref('int_globepay_transactions') }}
 )
