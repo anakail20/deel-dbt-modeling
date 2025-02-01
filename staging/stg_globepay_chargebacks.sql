@@ -1,3 +1,5 @@
+{{ config(materialized='view') }}
+
 WITH raw_chargebacks AS (
     SELECT
         external_ref,
