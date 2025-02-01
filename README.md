@@ -69,6 +69,7 @@ stg_globepay_acceptances      stg_globepay_chargebacks
         |
         v
  payment_transactions,transaction_metrics_by_country  <-- Uses only intermediate
+```
 
 ## ** Tips on Macros, Data Validation, and Documentation**
 
