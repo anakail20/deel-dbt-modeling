@@ -1,6 +1,6 @@
 # Deel DBT Modeling
 
-## 📌 Overview
+## Overview
 This project models **Globepay payment transaction data** using `dbt` (Data Build Tool).  
 It is structured using **dbt best practices**, following a **layered transformation approach** with **staging, intermediate, and marts** layers.
 
