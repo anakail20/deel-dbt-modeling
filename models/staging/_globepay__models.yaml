@@ -1,0 +1,26 @@
+models:
+  - name: stg_globepay_acceptance
+    description: "Staging model for Globepay acceptance transactions."
+    columns:
+      - name: external_ref
+        description: "Unique transaction identifier."
+      - name: transaction_id
+        description: "Internal reference ID for the transaction."
+      - name: state
+        description: "Status of the transaction, either ACCEPTED or DECLINED."
+      - name: transaction_amount
+        description: "Transaction amount in dollars."
+      - name: country
+        description: "Country where the transaction originated."
+      - name: currency
+        description: "Currency used in the transaction."
+      - name: transaction_date
+        description: "Timestamp when the transaction occurred."
+
+  - name: stg_globepay_chargebacks
+    description: "Staging model for Globepay chargebacks."
+    columns:
+      - name: external_ref
+        description: "Unique transaction identifier."
+      - name: chargeback_flag
+        description: "Indicates whether a transaction was charged back."
