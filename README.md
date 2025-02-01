@@ -16,10 +16,10 @@ From the raw data, we identified:
 - **Chargeback tracking**, with `chargeback_flag` showing whether a chargeback has occurred.
 
 ### **Key Observations**
-✅ **Multiple currencies** → Transactions occur in different currencies and require currency formatting.  
-✅ **Missing chargeback data** → Some transactions are missing chargeback information, requiring careful handling.  
-✅ **CVV usage tracking** → Some transactions include whether the CVV was provided (`cvv_used`).  
-✅ **Exchange rates available** → Certain transactions have exchange rates, which can be useful for normalization.  
+- **Multiple currencies** → Transactions occur in different currencies and require currency formatting.  
+- **Missing chargeback data** → Some transactions are missing chargeback information, requiring careful handling.  
+- **CVV usage tracking** → Some transactions include whether the CVV was provided (`cvv_used`).  
+- **Exchange rates available** → Certain transactions have exchange rates, which can be useful for normalization.  
 
 ---
 
