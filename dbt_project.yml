@@ -4,45 +4,27 @@ config-version: 2
 
 profile: 'deel_snowflake'
 
+# Paths to relevant directories
+model-paths: [models]
+analysis-paths: [analysis]
+test-paths: [tests]
+seed-paths: [seeds]
+macro-paths: [macros]
+snapshot-paths: [snapshots]
+target-path: target  # directory which will store compiled SQL files
+clean-targets:  # directories to be removed by `dbt clean`
+  - target
+  - dbt_modules
+
+# Configuring models
 models:
-  deel_dbt_modeling:
-    # Staging models: Raw data ingestion and basic transformations
-    staging:
-      +schema: staging
-      +materialized: view
-      +tags: ['staging']
-      
-    # Intermediate models: Business logic and calculated fields
-    intermediate:
-      +schema: intermediate
-      +materialized: ephemeral
-      +tags: ['intermediate']
-    
-    # Marts models: Finalized tables used for analytics and reporting
+  deel_dbt_project:
     marts:
       +schema: marts
       +materialized: table
-      +tags: ['marts']
-
-seeds:
-  deel_dbt_modeling:
-    +schema: raw
-    +tags: ['seeds']
-
-snapshots:
-  deel_dbt_modeling:
-    +schema: snapshots
-    +tags: ['snapshots']
-
-tests:
-  +store_failures: true
-  +schema: test_results
-
-clean-targets:
-  - "target"
-  - "dbt_packages"
-
-quoting:
-  database: false
-  schema: false
-  identifier: false
+    staging:
+      +schema: staging
+      +materialized: view
+    intermediate:
+      +schema: intermediate
+      +materialized: ephemeral
