@@ -27,4 +27,25 @@ models:
       +materialized: view
     intermediate:
       +schema: intermediate
-      +materialized: ephemeral
+
+seeds:
+  deel_dbt_project:
+    +schema: raw
+    +docs:
+      node_color: "#CF4647"
+    globepay_chargeback_report:
+      +description: "Contains chargeback transactions from Globepay, tracking refunded amounts and reasons."
+      +column_types:
+          external_ref: string
+          chargeback_date: date
+          chargeback_amount: numeric
+          reason: string
+    globepay_acceptance_report:
+      +description: "Includes acceptance and declined transaction data from Globepay, along with country and currency details."
+      +column_types:
+          external_ref: string
+          country: string
+          total_transactions: int
+          accepted_transactions: int
+          declined_transactions: int
+
