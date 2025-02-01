@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: globepay
+    schema: raw_globepay
+    description: "Raw data from the Globepay payment processor."
+    tables:
+      - name: acceptance
+        description: "Transaction acceptance data from Globepay."
+        columns:
+          - name: external_ref
+            description: "Unique identifier for the transaction."
+            tests:
+              - unique
+              - not_null
+          - name: state
+            description: "Accepted or Declined transaction state."
+            tests:
+              - accepted_values:
+                  values: ['ACCEPTED', 'DECLINED']
+          - name: amount
+            description: "Transaction amount in minor units."
+          - name: currency
+            description: "Three-letter ISO currency code."
+          - name: country
+            description: "Two-letter ISO country code."
+
+      - name: chargebacks
+        description: "Chargeback data from Globepay."
+        columns:
+          - name: external_ref
+            description: "Unique identifier for the transaction."
+            tests:
+              - unique
+              - not_null
+          - name: chargeback
+            description: "Boolean flag indicating whether the transaction was chargedback."
+            tests:
+              - not_null
