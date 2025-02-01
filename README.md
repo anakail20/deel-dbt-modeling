@@ -46,8 +46,8 @@ This project is structured into **three layers**, following dbt best practices:
 
 ---
 
-### 3️. Marts Layer (`mart_`)
-- Finalized tables for analytics and reporting.**
+### 3️. Marts Layer 
+- Finalized tables for analytics and reporting.
 - Aggregates data for insights.
 
 #### Marts Models
