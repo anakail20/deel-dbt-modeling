@@ -79,6 +79,11 @@ This project uses **custom macros** to improve code reusability:
   ```sql
   SELECT {{ coalesce_null('chargeback_amount', 0) }} AS chargeback_amount
 
+Uses **dbt-expectations package** for stronger data quality testing.
+Ensures:
+transaction_amount is always positive.
+acceptance_rate and chargeback_rate are between 0-100%.
+declined_amount for high-risk countries exceeds $25M.
 
 
 ---
