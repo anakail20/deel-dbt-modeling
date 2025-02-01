@@ -90,6 +90,7 @@ Each model includes descriptive YAML documentation.
 Run:
    ```sh
    dbt docs generate && dbt docs serve
+```
 
 ---
 
