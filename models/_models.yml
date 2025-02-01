@@ -1,0 +1,53 @@
+version: 2
+models:
+  - name: payment_transactions
+    description: A fact table containing all payment transactions, including chargeback information.
+    columns:
+      - name: external_ref
+        description: Unique transaction reference.
+        tests: [not_null, unique]
+      - name: date_time
+        description: Timestamp of the transaction.
+      - name: country
+        description: Country where the transaction occurred.
+      - name: currency
+        description: Currency used in the transaction.
+      - name: transaction_amount
+        description: Amount of the transaction.
+        tests:
+          - dbt_expectations.expect_column_values_to_be_positive
+      - name: state
+        description: Transaction status (Accepted, Declined).
+      - name: chargeback
+        description: Whether the transaction was charged back (TRUE/FALSE).
+      - name: chargeback_amount
+        description: Amount refunded due to chargeback.
+      - name: chargeback_reason
+        description: Reason for chargeback, if applicable.
+
+  - name: transaction_metrics_by_country
+    description: Aggregated transaction acceptance and chargeback metrics at the country level.
+    columns:
+      - name: country
+        description: Country where the transactions occurred.
+        tests: [not_null, unique]
+      - name: total_transactions
+        description: Total number of processed transactions.
+      - name: accepted_transactions
+        description: Count of accepted transactions.
+      - name: declined_transactions
+        description: Count of declined transactions.
+      - name: acceptance_rate
+        description: Percentage of transactions that were accepted.
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 100
+      - name: chargeback_count
+        description: Count of chargeback transactions.
+      - name: chargeback_rate
+        description: Percentage of chargebacks relative to total transactions.
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 100
