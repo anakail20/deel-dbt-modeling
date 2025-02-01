@@ -4,7 +4,7 @@ sources:
     description: Seeded raw data from Globepay, sourced from CSV files in the `seeds/` folder.
     tables:
       - name: acceptance_report
-        identifier: "Globepay Acceptance Report"
+        identifier: "Globepay Acceptance Report - Globepay Acceptance Report"
         config:
           tags: [seeds]
         description: Data containing accepted and declined transactions.
@@ -20,7 +20,7 @@ sources:
             description: Total number of declined transactions.
 
       - name: chargeback_report
-        identifier: "Globepay Chargeback Report"
+        identifier: "Globepay Chargeback Report - Globepay Chargeback Report"
         config:
           tags: [seeds]
         description: Chargeback transactions reported by Globepay.
