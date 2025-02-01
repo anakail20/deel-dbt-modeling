@@ -1,0 +1,25 @@
+version: 2
+models:
+  - name: intermediate_transactions
+    description: Consolidates acceptance and chargeback data into a single intermediate model for analysis.
+    columns:
+      - name: external_ref
+        description: Unique transaction reference.
+        tests: [not_null, unique]
+      - name: date_time
+        description: Timestamp of the transaction.
+        tests: [not_null]
+      - name: country
+        description: Country where the transaction occurred.
+      - name: currency
+        description: Currency used in the transaction.
+      - name: amount
+        description: Transaction amount.
+      - name: state
+        description: Status of the transaction (Accepted, Declined).
+      - name: chargeback
+        description: Whether the transaction was charged back (TRUE/FALSE).
+      - name: chargeback_amount
+        description: Amount refunded due to chargeback.
+      - name: reason
+        description: Reason for chargeback (if applicable).
