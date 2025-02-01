@@ -68,7 +68,23 @@ stg_globepay_acceptances      stg_globepay_chargebacks
   int_globepay_transactions  <-- Joins both sources
         |
         v
- payment_transactions  <-- Uses only intermediate
-        |
-        v
-transaction_metrics_by_country  <-- Aggregated analytics per country
+ payment_transactions,transaction_metrics_by_country  <-- Uses only intermediate
+
+## ** Tips on Macros, Data Validation, and Documentation**
+
+This project uses **custom macros** to improve code reusability:
+- `coalesce_null(column_name, default_value)` → Ensures that `NULL` values are replaced with a default.
+- Example usage:
+  ```sql
+  SELECT {{ coalesce_null('chargeback_amount', 0) }} AS chargeback_amount
+
+
+
+---
+
+## **How to Run the Project**
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/anakail20/deel-dbt-modeling.git
+   cd deel-dbt-modeling
+   
