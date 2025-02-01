@@ -86,6 +86,11 @@ acceptance_rate and chargeback_rate are between 0-100%.
 declined_amount for high-risk countries exceeds $25M.
 
 
+Each model includes descriptive YAML documentation.
+Run:
+   ```sh
+   dbt docs generate && dbt docs serve
+
 ---
 
 ## **How to Run the Project**
