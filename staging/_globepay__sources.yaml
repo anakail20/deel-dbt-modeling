@@ -1,39 +1,36 @@
 version: 2
-
 sources:
-  - name: globepay
-    schema: raw_globepay
-    description: "Raw data from the Globepay payment processor."
+  - name: seeds_globepay
+    description: Seeded raw data from Globepay, sourced from CSV files in the `seeds/` folder.
     tables:
-      - name: acceptance
-        description: "Transaction acceptance data from Globepay."
+      - name: acceptance_report
+        identifier: "Globepay Acceptance Report"
+        config:
+          tags: [seeds]
+        description: Data containing accepted and declined transactions.
         columns:
-          - name: external_ref
-            description: "Unique identifier for the transaction."
-            tests:
-              - unique
-              - not_null
-          - name: state
-            description: "Accepted or Declined transaction state."
-            tests:
-              - accepted_values:
-                  values: ['ACCEPTED', 'DECLINED']
-          - name: amount
-            description: "Transaction amount in minor units."
-          - name: currency
-            description: "Three-letter ISO currency code."
           - name: country
-            description: "Two-letter ISO country code."
+            description: Country where the transaction occurred.
+            tests: [not_null]
+          - name: total_transactions
+            description: Total number of transactions in a given period.
+          - name: accepted_transactions
+            description: Total number of accepted transactions.
+          - name: declined_transactions
+            description: Total number of declined transactions.
 
-      - name: chargebacks
-        description: "Chargeback data from Globepay."
+      - name: chargeback_report
+        identifier: "Globepay Chargeback Report"
+        config:
+          tags: [seeds]
+        description: Chargeback transactions reported by Globepay.
         columns:
           - name: external_ref
-            description: "Unique identifier for the transaction."
-            tests:
-              - unique
-              - not_null
-          - name: chargeback
-            description: "Boolean flag indicating whether the transaction was chargedback."
-            tests:
-              - not_null
+            description: Unique reference for the chargeback transaction.
+            tests: [not_null, unique]
+          - name: chargeback_date
+            description: Date when the chargeback was issued.
+          - name: chargeback_amount
+            description: Amount refunded due to the chargeback.
+          - name: reason
+            description: Reason for the chargeback.
