@@ -1,25 +1,15 @@
 WITH raw_acceptance AS (
-    SELECT
+   SELECT
         external_ref,
         ref AS transaction_id,
         state,
         cvv_provided::BOOLEAN AS cvv_used,
-        CAST(amount AS DECIMAL(18,2)) AS transaction_amount,
+        {{ format_currency('amount') }} AS transaction_amount,
         country,
         currency,
-        TRY_CAST(rates::STRING AS JSON) AS rates_json,
-        PARSE_TIMESTAMP('%Y-%m-%dT%H:%M:%E*S', date_time) AS transaction_date
+        {{ convert_timestamp('date_time') }} AS transaction_date,
+        {{ extract_json_value('rates', 'USD') }} AS exchange_rate_to_usd
     FROM {{ source('globepay', 'acceptance') }}
 )
 
-SELECT 
-    external_ref,
-    transaction_id,
-    state,
-    cvv_used,
-    transaction_amount,
-    country,
-    currency,
-    transaction_date,
-    rates_json->>'USD' AS exchange_rate_to_usd
-FROM raw_acceptance
+SELECT * FROM raw_acceptance;
