@@ -1,3 +1,9 @@
+{{ config(
+    materialized='table', 
+    tags=['finance', 'payments', 'chargebacks'],
+    enabled=True,
+) }}
+
 WITH transactions AS (
     SELECT 
         external_ref,
