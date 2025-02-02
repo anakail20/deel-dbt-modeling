@@ -7,14 +7,15 @@ Purpose:
 
 How it works:
 - Uses `strategy='timestamp'` to capture changes based on date_time.
-- Stores historical snapshots whenever stat` or chargeback status changes.
+- Stores historical snapshots whenever state or chargeback status changes.
 */
+
 {{ 
     config(
         target_schema='snapshots',
-        unique_key='external_ref',  -- Ensures each transaction is uniquely tracked
-        strategy='timestamp',       -- Captures changes based on `date_time`
-        updated_at='date_time'      -- Detects updates in the transaction record
+        unique_key='external_ref',  
+        strategy='timestamp',       
+        updated_at='date_time'      
     ) 
 }}
 
