@@ -11,7 +11,7 @@ deel_dbt_project:
       warehouse: "<your_snowflake_warehouse>"
       schema: dbt_dev
       threads: 4
-
+      
     prod:
       type: snowflake
       account: "<your_snowflake_account>"
